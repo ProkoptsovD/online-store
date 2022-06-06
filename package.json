@@ -1,7 +1,7 @@
 {
-  "name": "internet-store-app-for-scandiweb",
+  "name": "online-store",
   "version": "0.1.0",
-  "homepage": "https://ProkoptsovD.github.io/internet-store-app-for-scandiweb",
+  "homepage": "https://ProkoptsovD.github.io/online-store",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
