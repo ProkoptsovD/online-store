@@ -1,4 +1,4 @@
-import { CLOSE_CURRENCY_LIST, INIT_CURRENCY_SWITCHER, OPEN_CURRENCY_LIST, SWITCH_ACTUAL_CURRENCY } from '../types/types';
+import { CLOSE_CURRENCY_LIST, OPEN_CURRENCY_LIST, SWITCH_ACTUAL_CURRENCY } from '../types/types';
 
 const initialState = {
 	actualCurrency: {

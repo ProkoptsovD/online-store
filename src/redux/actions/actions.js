@@ -1,6 +1,5 @@
 import { handleBodyScroll } from '../../helpers/handleBodyScroll';
 import {
-	INIT_CURRENCY_SWITCHER,
 	SWITCH_ACTUAL_CURRENCY,
 	INIT_NAVBAR,
 	INIT_APP,
@@ -8,7 +7,6 @@ import {
 	RENDER_CATEGORY_PAGE,
 	RENDER_PRODUCT_PAGE,
 	ADD_ITEM_TO_CART,
-	REMOVE_ITEM_FROM_CART,
 	INCREASE_ITEMS_QUANTATY,
 	DECREASE_ITEMS_QUANTATY,
 	OPEN_OVERLAY,
@@ -41,10 +39,6 @@ export const renderCategoryPage = (products) => ({
 	type: RENDER_CATEGORY_PAGE,
 	payload: { products },
 });
-export const initCurrencySwitcher = (currencyByDefault) => ({
-	type: INIT_CURRENCY_SWITCHER,
-	payload: { currencyByDefault },
-});
 export const switchActualCurrency = (newCurrency) => ({
 	type: SWITCH_ACTUAL_CURRENCY,
 	payload: { newCurrency },
@@ -76,10 +70,6 @@ export const deleteNotification = (toastId) => ({
 export const addItemToCart = (item, option = null) => ({
 		type: ADD_ITEM_TO_CART,
 		payload: {item, option}
-});
-export const removeItemToCart = (itemId) => ({
-	type: REMOVE_ITEM_FROM_CART,
-	payload: {itemId}
 });
 export const increaseItemsQuantaty = (id) => ({
 	type: INCREASE_ITEMS_QUANTATY,

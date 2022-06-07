@@ -1,7 +1,6 @@
 {
   "name": "online-store",
   "version": "0.1.0",
-  "homepage": "https://ProkoptsovD.github.io/online-store",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
@@ -47,7 +46,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
     "redux-logger": "^3.0.6",
     "sass": "^1.51.0"
   }

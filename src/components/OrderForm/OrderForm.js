@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { CommentInput, EmailInput, FirstNameInput, Form, InputLabel, LastNameInput, PhoneInput, SubmitButton, TermsAndConditions } from './OrderForm.styled';
+import { CommentInput, EmailInput, FirstNameInput, Form, InputLabel, LastNameInput, PhoneInput, SubmitButton } from './OrderForm.styled';
 import Agreement from './Agreement';
 import { validateEmail } from '../../helpers/validateEmail';
 import { validatePhone } from '../../helpers/validatePhone';

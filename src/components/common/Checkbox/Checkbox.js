@@ -4,7 +4,7 @@ import { CheckboxLabel, StyledCheckbox, Wrapper } from './Checkbox.styled';
 
 class Checkbox extends Component {
     render() {
-        const { onChange, checked, children } = this.props;
+        const { onChange, checked } = this.props;
 
         return (
             <Wrapper>

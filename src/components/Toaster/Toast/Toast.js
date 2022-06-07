@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { ToastWrapper } from './Toast.styled';
 import { connect } from 'react-redux';
-import { deleteNotification, hideNotification } from '../../../redux/actions/actions';
+import { deleteNotification } from '../../../redux/actions/actions';
 
 class Toast extends Component {
     messageList = {
