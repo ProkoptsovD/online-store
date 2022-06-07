@@ -50,7 +50,7 @@ class OrderForm extends Component {
 
         const { firstName, lastName, tel, email, comment } = e.currentTarget.elements;
         const { agreement: { agreed } } = this.state;
-        const { addProductList, alertMessage } = this.props;
+        const { addProductList, totalPrice, alertMessage } = this.props;
         const isEmailValid = validateEmail(email.value);
         const isPhoneValid = validatePhone(tel.value);
         if (!isEmailValid || !isPhoneValid) {
@@ -75,6 +75,7 @@ class OrderForm extends Component {
             },
             customerOrder: {
                 items: addProductList,
+                totalPrice,
             }
         }
         console.log(dataForServer);
@@ -156,6 +157,7 @@ class OrderForm extends Component {
 
 const mapStateToProps = (state) => ({
     addProductList: state.cart.items,
+    totalPrice: state.cart.totalPrice,
 });
 const mapDispatchToProps = (dispatch) => ({
     alertMessage: (message, type) => {

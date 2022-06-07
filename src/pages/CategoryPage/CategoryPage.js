@@ -52,7 +52,6 @@ class CategoryPage extends React.Component {
     }
     render() {
         const { productList, categoryName } = this.props;
-        console.log(this.props.router);
 
         return (
             <Section>
