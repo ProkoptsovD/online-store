@@ -31,7 +31,6 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://online-store-prokoptsovd.herokuapp.com",
   "browserslist": {
     "production": [
       ">0.2%",
