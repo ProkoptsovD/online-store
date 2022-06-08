@@ -15,8 +15,8 @@ const save = (key, value) => {
       console.error("Get state error: ", error.message);
     }
   };
-  const clear = () => {
-    localStorage.clear();
+  const clear = (...keys) => {
+    !keys.length ? localStorage.clear() : keys.forEach(key => localStorage.removeItem(key));
   }
   
   export default {

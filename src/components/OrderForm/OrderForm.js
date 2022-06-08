@@ -81,7 +81,7 @@ class OrderForm extends Component {
         console.log(dataForServer);
         
         this.resetForm();
-        storage.clear();
+        storage.clear('cart', 'order-form');
         clearCart();
         alertMessage(alertMessages.orderSuccess, 'success');
     }
