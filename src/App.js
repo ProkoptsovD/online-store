@@ -25,13 +25,13 @@ import { clearCartAfterOrderSubmit, setCartDataAfterReload, switchActualCurrency
 
 class App extends Component {
 	componentDidMount () {
-		const { initApp, setCart, clearCart, setCurrency } = this.props;
+		const { initApp, setCart, clearCart, setCurrency, currency } = this.props;
 		
 		initApp();
 		storage.load('cart')
 						? setCart(storage.load('cart'))
 						: clearCart();
-		setCurrency(storage.load('currency'));
+		setCurrency(storage.load('currency') || currency);
 	}
 	renderRoutes = () => {
 		const { categories } = this.props;
@@ -111,6 +111,7 @@ const mapStateToProps = (state) => {
 		toastList: state.toast.toastList,
 		showAlert: state.alert.showAlert,
 		cart: state.cart,
+		currency: state.currency.actualCurrency.index,
     }
 }
 const mapDispatchToProps = (dispatch) => ({
