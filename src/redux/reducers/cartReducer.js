@@ -1,6 +1,6 @@
 import { deepEqual } from "../../helpers/deepEqual";
 import { generateHash } from "../../helpers/generateHash";
-import { ADD_ITEM_TO_CART, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, SUM_TOTAL_PRICE, UPDATE_ACTUAL_CURRENCY_IN_CART } from "../types/types"
+import { ADD_ITEM_TO_CART, CLEAR_CART_AFTER_ORDER_SUBMIT, DECREASE_ITEMS_QUANTATY, INCREASE_ITEMS_QUANTATY, SET_CART_DATA_AFTER_PAGE_RELOAD, SUM_TOTAL_PRICE, UPDATE_ACTUAL_CURRENCY_IN_CART } from "../types/types"
 
 const initialState = {
     currency: 0,
@@ -50,7 +50,7 @@ const setDefaultAttributes = ({ attributes }, defaultValue) => {
             ...acc,
             [name]: {
                 id: Number(defaultValue),
-                value: items[defaultValue].displayValue,
+                value: items[defaultValue]?.displayValue,
             }
         };
         return acc;
@@ -129,6 +129,14 @@ export const cartReducer = (state = initialState, action) => {
                 ...state,
                 priceTotal: sum,
                 tax: (Number(sum.total) * state.taxFeeSize).toFixed(2),
+            }
+        case SET_CART_DATA_AFTER_PAGE_RELOAD:
+            return {
+                ...action.payload.cart,
+            }
+        case CLEAR_CART_AFTER_ORDER_SUBMIT:
+            return {
+                ...initialState,
             }
         default:
             return state;

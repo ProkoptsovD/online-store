@@ -15,8 +15,12 @@ const save = (key, value) => {
       console.error("Get state error: ", error.message);
     }
   };
+  const clear = () => {
+    localStorage.clear();
+  }
   
   export default {
     save,
     load,
+    clear,
   };

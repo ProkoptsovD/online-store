@@ -11,7 +11,7 @@ class Alert extends Component {
     componentDidMount () {
         handleBodyScroll.disable();
     }
-    handleControlsClick = () => {
+    handleControlsClick = (e) => {    
         const { closeMessage } = this.props;
 
         closeMessage();

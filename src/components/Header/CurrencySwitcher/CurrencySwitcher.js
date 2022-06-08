@@ -1,10 +1,11 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import { DropdownList, ListItem, CurrencySellectionBtn, Wrapper, OpenCloseSwitcherBtn, ActualCurrency } from "./CurrencySwitcher.styled";
+import { switchActualCurrency, updateActualCurrencyInCart, sumTotalPrice, openCurrencyList, closeCurrencyList} from '../../../redux/actions/actions'
 import PropTypes from 'prop-types';
 import Icons from "../../common/Icons";
-import { DropdownList, ListItem, CurrencySellectionBtn, Wrapper, OpenCloseSwitcherBtn, ActualCurrency } from "./CurrencySwitcher.styled";
+import storage from '../../../services/storage-api';
 
-import { switchActualCurrency, updateActualCurrencyInCart, sumTotalPrice, openCurrencyList, closeCurrencyList} from '../../../redux/actions/actions'
 
 class CurrencySwitcher extends Component {
     static defaultProps = {
@@ -14,7 +15,6 @@ class CurrencySwitcher extends Component {
     }
     componentDidMount () {
         const { updateCurrencyInCart, actualCurrency } = this.props;
-
         updateCurrencyInCart(actualCurrency);
     }
     renderCurrencies = () => {
@@ -45,6 +45,7 @@ class CurrencySwitcher extends Component {
             switchActualCurrency(picked);
             updateCurrencyInCart(picked);
             sumTotalPriceInCart();
+            storage.save('currency', picked);
         }
 
         close();

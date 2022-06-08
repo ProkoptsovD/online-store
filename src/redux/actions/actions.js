@@ -7,6 +7,7 @@ import {
 	RENDER_CATEGORY_PAGE,
 	RENDER_PRODUCT_PAGE,
 	ADD_ITEM_TO_CART,
+	REMOVE_ITEM_FROM_CART,
 	INCREASE_ITEMS_QUANTATY,
 	DECREASE_ITEMS_QUANTATY,
 	OPEN_OVERLAY,
@@ -23,6 +24,8 @@ import {
 	DELETE_NOTIFICATION,
 	SHOW_ALERT,
 	CLOSE_ALERT,
+	SET_CART_DATA_AFTER_PAGE_RELOAD,
+	CLEAR_CART_AFTER_ORDER_SUBMIT,
 } from '../types/types';
 
 export const initApp = (initialData) => {
@@ -31,6 +34,12 @@ export const initApp = (initialData) => {
 		payload: { initialData },
 	};
 };
+export const setCartDataAfterReload = (cart) => ({
+	type: SET_CART_DATA_AFTER_PAGE_RELOAD,
+	payload: {
+		cart,
+	}
+});
 export const initCurrentCategory = (currentPage) => ({
 	type: INIT_CURRENT_CATEGORY,
 	payload: { currentPage },
@@ -71,6 +80,10 @@ export const addItemToCart = (item, option = null) => ({
 		type: ADD_ITEM_TO_CART,
 		payload: {item, option}
 });
+export const removeItemToCart = (itemId) => ({
+	type: REMOVE_ITEM_FROM_CART,
+	payload: {itemId}
+});
 export const increaseItemsQuantaty = (id) => ({
 	type: INCREASE_ITEMS_QUANTATY,
 	payload: {id},
@@ -86,7 +99,9 @@ export const updateActualCurrencyInCart = (currency) => ({
 export const sumTotalPrice = () => ({
 	type: SUM_TOTAL_PRICE,
 });
-
+export const clearCartAfterOrderSubmit = () => ({
+	type: CLEAR_CART_AFTER_ORDER_SUBMIT,
+})
 //================== cart overlay actions =============//
 export const openOverlay = () => {
 	handleBodyScroll.disable();

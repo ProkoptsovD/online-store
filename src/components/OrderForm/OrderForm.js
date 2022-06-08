@@ -1,11 +1,12 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { CommentInput, EmailInput, FirstNameInput, Form, InputLabel, LastNameInput, PhoneInput, SubmitButton } from './OrderForm.styled';
-import Agreement from './Agreement';
 import { validateEmail } from '../../helpers/validateEmail';
 import { validatePhone } from '../../helpers/validatePhone';
-import { showAlert } from '../../redux/actions/actions';
+import { clearCartAfterOrderSubmit, showAlert } from '../../redux/actions/actions';
 import { alertMessages } from '../../constants/alertMessages';
+import Agreement from './Agreement';
+import storage from '../../services/storage-api';
 
 class OrderForm extends Component {
     state = {
@@ -44,13 +45,12 @@ class OrderForm extends Component {
             }
         }));
     }
-
     handleFormSubmit = (e) => {
         e.preventDefault();
 
         const { firstName, lastName, tel, email, comment } = e.currentTarget.elements;
         const { agreement: { agreed } } = this.state;
-        const { addProductList, totalPrice, alertMessage } = this.props;
+        const { addProductList, alertMessage, totalPrice, clearCart } = this.props;
         const isEmailValid = validateEmail(email.value);
         const isPhoneValid = validatePhone(tel.value);
         if (!isEmailValid || !isPhoneValid) {
@@ -81,6 +81,8 @@ class OrderForm extends Component {
         console.log(dataForServer);
         
         this.resetForm();
+        storage.clear();
+        clearCart();
         alertMessage(alertMessages.orderSuccess, 'success');
     }
     resetForm = () => {
@@ -97,6 +99,12 @@ class OrderForm extends Component {
                 agreed: false,
             }
         });
+    }
+    componentDidMount () {
+        this.setState(storage.load('order-form'));
+    }
+    componentDidUpdate () {
+        storage.save('order-form', this.state);
     }
     render() {
         const { agreement: { agreed }, inputValue, isDataValid } = this.state;
@@ -157,11 +165,14 @@ class OrderForm extends Component {
 
 const mapStateToProps = (state) => ({
     addProductList: state.cart.items,
-    totalPrice: state.cart.totalPrice,
+    totalPrice: state.cart.priceTotal,
 });
 const mapDispatchToProps = (dispatch) => ({
     alertMessage: (message, type) => {
         dispatch(showAlert(message, type));
+    },
+    clearCart: () => {
+        dispatch(clearCartAfterOrderSubmit())
     }
 })
 

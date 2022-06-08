@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { setProductsToPageThunk } from "../../redux/thunks/setProductToPageThunk";
 import { addItemToCart, sumTotalPrice } from "../../redux/actions/actions";
 import { withRouter } from '../../hoc/withRouter';
-
+import storage from '../../services/storage-api';
 
 class CategoryPage extends React.Component {
     static defaultProps = {
@@ -44,11 +44,17 @@ class CategoryPage extends React.Component {
     }
     componentDidMount() {
         const { categoryName, renderProductList } = this.props;
-
         renderProductList(categoryName);
     }
     componentWillUnmount() {
         this.cancelRequest();
+    }
+    componentDidUpdate () {
+        const { cart } = this.props;
+        
+        if (!cart.items || !cart.items.length) return;
+
+        storage.save('cart', cart);
     }
     render() {
         const { productList, categoryName } = this.props;
@@ -74,6 +80,7 @@ CategoryPage.propTypes = {
 const mapStateToProps = (state) => ({
     productList: state.category.products,
     currency: state.currency.actualCurrency.index,
+    cart: state.cart,
 });
 const mapDispatchToProps = (dispatch) => ({
     renderProductList: (categoryName) => {
@@ -84,7 +91,7 @@ const mapDispatchToProps = (dispatch) => ({
     },
     sumTotalPriceInCart: () => {
         dispatch(sumTotalPrice());
-    }
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CategoryPage));
