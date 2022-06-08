@@ -1,3 +1,4 @@
+import { clearCartAfterOrderSubmit, setCartDataAfterReload, switchActualCurrency } from './redux/actions/actions';
 import { Component, Fragment } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -21,7 +22,6 @@ import Overlay from './components/Overlay/';
 import Alert from './components/common/Alert/Alert';
 import storage from './services/storage-api';
 import './App.css';
-import { clearCartAfterOrderSubmit, setCartDataAfterReload, switchActualCurrency } from './redux/actions/actions';
 
 class App extends Component {
 	componentDidMount () {
