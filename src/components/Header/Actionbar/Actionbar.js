@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Actionbar extends Component {
     renderActionListItems = () => {
-        const {children} = this.props
+        const { children } = this.props
 
         return children.map((child, idx) => (
             <ListItem key={idx}>
@@ -13,7 +13,7 @@ class Actionbar extends Component {
         );
     }
     render () {
-        const {children} = this.props;
+        const { children } = this.props;
         const isArr = Array.isArray(children);
 
         return (

@@ -3,7 +3,6 @@ import {
 	SWITCH_ACTUAL_CURRENCY,
 	INIT_NAVBAR,
 	INIT_APP,
-	INIT_CURRENT_CATEGORY,
 	RENDER_CATEGORY_PAGE,
 	RENDER_PRODUCT_PAGE,
 	ADD_ITEM_TO_CART,
@@ -39,10 +38,6 @@ export const setCartDataAfterReload = (cart) => ({
 	payload: {
 		cart,
 	}
-});
-export const initCurrentCategory = (currentPage) => ({
-	type: INIT_CURRENT_CATEGORY,
-	payload: { currentPage },
 });
 export const renderCategoryPage = (products) => ({
 	type: RENDER_CATEGORY_PAGE,

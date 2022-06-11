@@ -1,22 +1,14 @@
-import { INIT_CURRENT_CATEGORY, RENDER_CATEGORY_PAGE } from '../types/types';
+import { RENDER_CATEGORY_PAGE } from '../types/types';
 
-const initialState = {
-	products: [],
-	currentPage: '',
-};
+const initialState = {};
 
 export const categoryPageReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case INIT_CURRENT_CATEGORY:
-			return {
-				...state,
-				currentPage: action.payload.currentPage,
-			};
 		case RENDER_CATEGORY_PAGE:
+			const { name, products } = action.payload.products;
 			return {
 				...state,
-				currentPage: action.payload.products.name,
-				products: action.payload.products.products,
+				[name] : products,
 			};
 		default:
 			return state;

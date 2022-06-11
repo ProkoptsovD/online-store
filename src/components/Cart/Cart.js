@@ -1,6 +1,6 @@
 import { Component } from "react";
 import PropTypes from 'prop-types';
-import OrederDetails from "./OrederDetails";
+import OrderDetails from "./OrderDetails";
 import Product from '../Cart/Product';
 import { connect } from "react-redux";
 import {
@@ -64,7 +64,7 @@ class Cart extends Component {
                         </>
             case this.cartType.default:
                 return  <>
-                            <OrederDetails values={{
+                            <OrderDetails values={{
                                     quantaty: itemsTotal,
                                     tax: symbol + tax,
                                     total: symbol + total,

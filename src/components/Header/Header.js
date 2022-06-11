@@ -5,10 +5,12 @@ import {HeaderConatiner, HeaderTag} from "./Header.styled.js";
 
 class Header extends React.Component {
     render() {
+        const { children } = this.props;
+
         return (
             <HeaderTag>
                 <HeaderConatiner>
-                    {this.props.children}
+                    {children}
                 </HeaderConatiner>
             </HeaderTag>
         )

@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, createRef } from "react";
 import { connect } from "react-redux";
 import { DropdownList, ListItem, CurrencySellectionBtn, Wrapper, OpenCloseSwitcherBtn, ActualCurrency } from "./CurrencySwitcher.styled";
 import { switchActualCurrency, updateActualCurrencyInCart, sumTotalPrice, openCurrencyList, closeCurrencyList} from '../../../redux/actions/actions'
@@ -17,12 +17,41 @@ class CurrencySwitcher extends Component {
         const { updateCurrencyInCart, actualCurrency } = this.props;
         updateCurrencyInCart(actualCurrency);
     }
+    componentDidUpdate() {
+        const { isOpened } = this.props;
+        if (isOpened) {
+            window.addEventListener('keydown', this.handleEscapeKeyDown);
+            window.addEventListener('click', this.handleOutsideCurrencySwitcherClick);
+            return;
+        }
+        if (!isOpened) {
+            window.removeEventListener('keydown', this.handleEscapeKeyDown);
+            window.removeEventListener('click', this.handleOutsideCurrencySwitcherClick);
+            return;
+        }
+    }
+    handleEscapeKeyDown = (e) => {
+        const { close } = this.props;
+        const isEscapeKeyDown = e.key === 'Escape';
+        console.log(e);
+
+        return isEscapeKeyDown && close();
+    }
+    handleOutsideCurrencySwitcherClick = (e) => {
+        const { close } = this.props;
+        const isClickOutsideCurencySwitcher = e.target.parentElement.parentElement.id === 'currency-switcher'
+                                                || e.target.parentElement.id === 'currency-switcher'
+                                                || e.target.id === 'currency-switcher';
+        
+        return !isClickOutsideCurencySwitcher && close();                                
+    }
     renderCurrencies = () => {
         const { currencyList } = this.props;
         
         return currencyList.map(({ symbol, label }, idx) => 
                 <ListItem key={label}>
                     <CurrencySellectionBtn
+                        id={'currencySellectionBtn'}
                         value={idx}
                         onClick={this.handleSelectionBtnClick}
                     >
@@ -55,7 +84,7 @@ class CurrencySwitcher extends Component {
         const symbol = currencyList[actualCurrency]?.symbol
 
         return (        
-            <Wrapper>
+            <Wrapper id="currency-switcher">
                 <OpenCloseSwitcherBtn
                     isOpened={isOpened}
                     onClick={this.handleOpenCloseBtnClick}

@@ -21,26 +21,6 @@ export const InnerWrapper = styled.div`
     & strong:last-of-type {
         margin-bottom: ${({ theme }) => theme.spacing(5)};
     }
-    & :last-child {
-        font-family: ${({ theme }) => theme.typography.fontFamily['4']};
-        line-height: ${({ theme }) => theme.typography.lineHeight['1.6']};
-        text-align: justify;
-    }
-`;
-
-export const DescriptionWrapper = styled.div`
-    line-height: ${({ theme }) => theme.typography.lineHeight['1.6']};
-    color: ${({ theme }) => theme.colors.dark['300']};
-
-    & :nth-child(odd) {
-        margin-bottom: 16px;
-    }
-    & :nth-child(even) {
-        margin-bottom: 4px;
-    }
-    & :last-child {
-        margin-bottom: 0;
-    }
 `;
 
 export const AddToCartButton = styled(TextButton).attrs(props => ({

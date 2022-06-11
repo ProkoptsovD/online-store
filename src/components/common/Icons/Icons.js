@@ -4,10 +4,12 @@ import icons from '../../../icons/icons.svg';
 
 class Icons extends Component {
     render () {
+        const { id } = this.props;
+
         return (
             <>
                 <svg {...this.props}>
-                    <use href={`${icons}#${this.props.id}`}></use>
+                    <use href={`${icons}#${id}`}></use>
                 </svg>
             </>
         )

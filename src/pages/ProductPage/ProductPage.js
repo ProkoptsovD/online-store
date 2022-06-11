@@ -2,13 +2,14 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "../../hoc/withRouter";
 import { getProductByIdThunk } from "../../redux/thunks/getProductByIdThunk";
+import { addItemToCart, addNotification, clearProductPage, sumTotalPrice } from "../../redux/actions/actions";
 import Section from "../../components/common/Section";
 import ProductCard from "../../components/ProductCard/";
-import { addItemToCart, addNotification, clearProductPage, sumTotalPrice } from "../../redux/actions/actions";
 
 class ProductPage extends Component {
     componentDidMount() {
         const { getProduct, router: { params : { id } } } = this.props;
+        
         getProduct(id);
     };
     componentWillUnmount() {

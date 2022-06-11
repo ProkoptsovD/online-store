@@ -24,7 +24,7 @@ class Gallery extends Component {
         });
     };
     shouldComponentUpdate(_, { currentPic, totalPics }) {
-       return currentPic !== this.state.currentPic || totalPics !== this.state.totalPics;
+        return currentPic !== this.state.currentPic || totalPics !== this.state.totalPics;
     };
     renderImages = () => {
         const { imageList, imageAlt } = this.props;

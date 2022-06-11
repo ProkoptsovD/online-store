@@ -5,10 +5,12 @@ import Container from '../Container/';
 
 class Section extends Component {
     render () {
+        const { children } = this.props;
+
         return (
             <StyledSection>
                 <Container>
-                    {this.props.children}
+                    {children}
                 </Container>
             </StyledSection>
         );

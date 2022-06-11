@@ -1,6 +1,6 @@
 import { PureComponent } from "react";
 import PropTypes from 'prop-types';
-import { InnerWrapper, OuterWrapper, AddToCartButton, DescriptionWrapper } from './ProductCard.styled';
+import { InnerWrapper, OuterWrapper, AddToCartButton } from './ProductCard.styled';
 import Gallery from "../Gallery/";
 import ProductInfo from "./ProductInfo/";
 import OptionPicker from "../OptionPicker";
@@ -60,7 +60,7 @@ class ProductCard extends PureComponent {
         const { attributes } = this.props.product;
         const allOptionNumber = attributes.length;
         const selectedOptionNumber = Object.keys(this.state.selectedOptions).length;
-       
+
         return allOptionNumber === selectedOptionNumber;
     }
     addToCart = () => {
@@ -83,6 +83,7 @@ class ProductCard extends PureComponent {
         return (
             <OuterWrapper>
                 <Gallery
+                    instock={inStock}
                     galleryType={galleryType}
                     imageList={gallery}/>
                 <InnerWrapper instock={inStock}>
@@ -97,14 +98,12 @@ class ProductCard extends PureComponent {
                         onClick={this.addToCart}
                         disabled={!inStock}
                     >
-                        Add to cart
+                        {inStock ? 'Add to cart' : 'Out of stock'}
                     </AddToCartButton>
                     {
-                        description &&  <DescriptionWrapper>
-                                            <Description
-                                                descr={description}
-                                            />
-                                        </DescriptionWrapper>
+                        description &&  <Description
+                                            descr={description}
+                                        />
                     }
                 </InnerWrapper>
             </OuterWrapper>

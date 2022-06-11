@@ -93,7 +93,7 @@ export const Picture = styled.img`
 `;
 
 export const ViewPort = styled.div`
-    ${({ galleryType, theme }) => {
+    ${({ galleryType, theme, instock }) => {
             if (galleryType === 'mini') {
                 return css`
                     position: absolute;
@@ -102,6 +102,7 @@ export const ViewPort = styled.div`
             };
             if (galleryType === 'default') {
                 return css`
+                    position: relative;
                     width: 610px;
                     height: 498px;
             
@@ -111,6 +112,22 @@ export const ViewPort = styled.div`
                         width: 100%;
                         height: 100%;
                     }
+
+                    ${!instock && css`
+                        &::before {
+                            position: absolute;
+                            top: 6px;
+                            left: 6px;
+
+                            content: 'Out of stock';
+                            padding: ${theme.spacing(3)};
+                            font-size: ${theme.typography.fontSize['600']};
+
+                            background-color: ${theme.colors.neutral['600']};
+                            opacity: 0.5;
+                            color: ${theme.colors.light['100']};
+                        }
+                    `}
                 `
             };
         }
